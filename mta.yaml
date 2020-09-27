@@ -1,0 +1,36 @@
+ID: MTA_SO_DEMO
+_schema-version: '2.1'
+parameters:
+   deploy_mode: html5-repo
+version: 0.0.1
+
+modules:
+ - name: mta-so-demo-approuter
+   type: approuter.nodejs
+   path: mta-so-demo-approuter
+   parameters:
+      disk-quota: 256M
+      memory: 256M 
+   requires:
+    - name: MTA_SO_DEMO_html5_repo_runtime
+
+
+ - name: MTA_SO_DEMO_ui_deployer
+   type: com.sap.html5.application-content
+   path: MTA_SO_DEMO_ui_deployer
+   requires:
+    - name: MTA_SO_DEMO_html5_repo_host
+
+resources:
+ - name: MTA_SO_DEMO_html5_repo_runtime
+   parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+   type: org.cloudfoundry.managed-service
+
+ - name: MTA_SO_DEMO_html5_repo_host
+   parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+   type: org.cloudfoundry.managed-service
+

@@ -11,7 +11,7 @@ modules:
    parameters:
       disk-quota: 256M
       memory: 256M 
-   requires:
+   requires: 
     - name: MTA_SO_DEMO_html5_repo_runtime
 
 
